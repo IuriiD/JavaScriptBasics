@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript basic - Exercises, Practice, Solution</title>
+</head>
+<body>
+    <h2><a href="https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php">JavaScript basic - Exercises, Practice, Solution</a></h2>
+
+    <h3>2. Write a JavaScript program to print the contents of the current window.</h3>
+
+    <form>
+        <input type="button" value="print" id="printBtn"/>
+    </form>
+
+    <script>
+        document.querySelector('#printBtn').addEventListener('click', function(){
+            console.log('print button is clicked');
+            window.print();
+        }, false);
+    </script>
+
+    <hr>
+
+    <h3>8. Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then prompted
+        to input a guess number. If the user input matches with guess number, the program will display a message "Good Work"
+        otherwise display a message "Not matched".</h3>
+
+    <button onclick="guessNumber()">Try to guess a number</button>
+
+    <p id="demo"></p>
+
+    <script>
+        function guessNumber() {
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+            let randNumber = Math.floor(Math.random() * 2) + 1;
+
+            // https://www.w3schools.com/jsref/met_win_prompt.asp
+            let userInput = prompt('Please enter a number from 1 to 10');
+
+            if (userInput == randNumber) {
+                document.getElementById("demo").innerHTML = 'Good work';
+            } else {
+                document.getElementById("demo").innerHTML = 'Not matched';
+            }
+        }
+    </script>
+</body>
+</html>
+
