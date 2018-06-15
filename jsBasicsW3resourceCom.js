@@ -326,7 +326,243 @@ function calculate20(number1, number2) {
     return number1!=0 && number2!=0 && (number1>0 && number2<0) || (number1<0 && number2>0);
 }
 
-console.log(calculate20(1, -1));
+
+/* #####################################################################################################################
+    21. Write a JavaScript program to create a new string adding "Py" in front of a given string. If the given
+    string begins with "Py" then return the original string.
+*/
+function string21(inputString) {
+    return inputString.slice(0,2) == 'Py' ? inputString : `Py ${inputString}`;
+}
 
 
-21. Write a JavaScript program to create a new string adding "Py" in front of a given string. If the given string begins with "Py" then return the original string.
+/* #####################################################################################################################
+    22. Write a JavaScript program to remove a character at the specified position of a given string and return
+    the new string.
+*/
+function string22(inputString, charPos) {
+    if (isNaN(charPos) || charPos>inputString.length || charPos<0) {
+        return 'Invalid position value, please enter a correct one';
+    } else {
+        return inputString.slice(0, charPos) + inputString.slice(charPos+1);
+    }
+}
+
+
+/* #####################################################################################################################
+    23. Write a JavaScript program to create a new string from a given string changing the position of first and
+    last characters. The string length must be greater than or equal to 1.
+*/
+function string23(s) {
+    return s.length==1 ? s : s.slice(-1) + s.substring(1, s.length-1) + s.charAt(0);
+}
+
+
+/* #####################################################################################################################
+    24. Write a JavaScript program to create a new string from a given string with the first character of the
+    given string added at the front and back.
+*/
+function string24(s) {
+    return s.length==1 ? s : s.charAt(0) + s + s.charAt(0);
+}
+
+
+/* #####################################################################################################################
+    25. Write a JavaScript program check if a given positive number is a multiple of 3 or a multiple of 7.
+*/
+function number25(n) {
+    return n % 3 == 0 || n % 7 == 0;
+}
+
+
+/* #####################################################################################################################
+    26. Write a JavaScript program to create a new string from a given string taking the last 3 characters and
+    added at both the front and back. The string length must be 3 or more.
+*/
+function string26(s) {
+    return s.slice(-3) + s + s.slice(-3);
+}
+
+
+/* #####################################################################################################################
+    27. Write a JavaScript program to check if a string starts with 'Java' and false otherwise.
+*/
+function string27(s) {
+    return s.slice(0,4) == 'Java';
+}
+
+
+/* #####################################################################################################################
+    28. Write a JavaScript program to check if two given integer values are in the range 50..99 (inclusive).
+    Return true if either of them are in the said range.
+*/
+function number28(n1, n2) {
+    return n1>=50 && n1<=99 || n2>=50 && n2<=99;
+}
+
+
+/* #####################################################################################################################
+    29. Write a JavaScript program to check if three given integer values are in the range 50..99 (inclusive).
+    Return true if one or more of them are in the said range.
+*/
+function number29(n1, n2, n3) {
+    return n1>=50 && n1<=99 || n2>=50 && n2<=99 || n3>=50 && n3<=99;
+}
+
+
+/* #####################################################################################################################
+    30. Write a JavaScript program to check if a string "Script" presents at 5th (index 4) position in a given string,
+    if "Script" presents in the string return the string without "Script" otherwise return the original one.
+*/
+function string30(s) {
+    return (s.substring(4, 10) == 'String') ? (s.substring(0, 4) + s.substring(10)) : s;
+}
+
+
+/* #####################################################################################################################
+    31. Write a JavaScript program to find the largest of three given integers.
+*/
+function number31(n1, n2, n3) {
+    let biggest;
+    n1>n2 ? biggest=n1 : biggest=n2;
+    biggest<n3 ? biggest=n3 : biggest;
+
+    return biggest;
+}
+
+
+/* #####################################################################################################################
+    32. Write a JavaScript program to find a value which is nearest to 100 from two different given integer values.
+*/
+function number32(n1, n2) {
+    if (n1==n2) {
+        return 'Equal numbers';
+    } else {
+        return (Math.abs(100-n1) < Math.abs(100-n2)) ? n1 : n2;
+    }
+}
+
+
+/* #####################################################################################################################
+    33. Write a JavaScript program to check if two numbers are in range 40..60 or in the range 70..100 inclusive.
+*/
+function number33(n1, n2) {
+    return (n1>=40 && n1<=60 || n1>=70 && n1<=100) && (n2>=40 && n2<=60 || n2>=70 && n2<=100);
+}
+
+
+/* #####################################################################################################################
+    34. Write a JavaScript program to find the larger number from the two given positive integers, the two
+    numbers are in the range 40..60 inclusive.
+*/
+function number34(n1, n2) {
+    if (n1>60 || n1<40 || n2>60 || n2<40) {
+        return false;
+    }
+    return n1>n2 ? n1 : n2;
+}
+
+
+/* #####################################################################################################################
+    35. Write a JavaScript program to check a given string contains 2 to 4 numbers of a specified character.
+*/
+function string35(s, ch) {
+    let counter = 0;
+    for (let i=0; i<s.length; i++) {
+        if (s[i] == ch) {
+            counter ++;
+        }
+    }
+    return counter>=2 && counter<=4;
+}
+
+
+/* #####################################################################################################################
+    36. Write a JavaScript program to check if the last digit of the three given positive integers is same.
+*/
+function number36(n1, n2, n3) {
+    //return n1.toString().slice(-1) == n2.toString().slice(-1) && n1.toString().slice(-1) == n3.toString().slice(-1);
+    return n1 % 10 == n2 % 10 && n1 % 10 == n3 % 10;
+}
+
+
+/* #####################################################################################################################
+    37. Write a JavaScript program to create new string with first 3 characters are in lower case. If the string
+    length is less than 3 convert all the characters in upper case.
+*/
+function string37(s) {
+    if (s.length<3) {
+        return s.toUpperCase();
+    } else {
+        return s.slice(0,3).toLowerCase() + s.slice(3);
+    }
+}
+
+
+/* #####################################################################################################################
+    38. Write a JavaScript program to check the total marks of a student in various examinations. The student will
+    get A+ grade if the total marks are in the range 89..100 inclusive, if the examination is "Final-exam."
+    the student will get A+ grade and total marks must be greater than or equal to 90. Return true if the
+    student get A+ grade or false otherwise.
+*/
+function exam38(grade, ifFinal) {
+    if (ifFinal) {
+        return grade>=90;
+    } else {
+        return grade>=89 && grade<=100;
+    }
+}
+
+
+/* #####################################################################################################################
+    39. Write a JavaScript program to compute the sum of the two given integers, If the sum is in the range 50..80
+    return 65 other wise return 80.
+*/
+function number39(n1, n2) {
+    let sum = n1 + n2;
+    return sum > 50 && sum < 80 ? 65 : 80;
+}
+
+
+/* #####################################################################################################################
+    40. Write a JavaScript program to check from two given integers if either one is 8 or their sum or difference is 8.
+*/
+function number40(n1, n2) {
+    return n1==8 || n2==8 || n1+n2==8 || Math.abs(n1-n2)==8;
+}
+
+
+/* #####################################################################################################################
+    41. Write a JavaScript program to check three given numbers, if the three numbers are same return 30 otherwise
+    return 40 and if two numbers are same return 20.
+*/
+function number41(n1, n2, n3) {
+    if (n1 == n2 && n1 == n3) {
+        return 30;
+    } else {
+        if (n1==n2 || n1==n3 || n2==n3) {
+            return 20;
+        }
+        return 40;
+    }
+}
+
+
+/* #####################################################################################################################
+    42. Write a JavaScript program to check if three given numbers (integers) are increasing in strict mode and flag
+    is "false", however if "true" is false the numbers will in soft mode.
+    Note: Strict mode -> 10, 15, 31 : Soft mode -> 24, 22, 31 or 22, 22, 31
+*/
+function number42(n1, n2, n3, flag) {
+    if (flag) {
+        return n2 > n1 && n3 > n2;
+    } else {
+        return n1 != n2 && n1 != n3 && n2 != n3;
+    }
+}
+
+
+console.log(number42(2, 8, 8, true));
+
+
+
