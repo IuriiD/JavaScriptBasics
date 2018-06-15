@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>JavaScript basic - Exercises, Practice, Solution</title>
+    <style>
+        * {
+            font-family: Calibri, Verdana;
+        }
+    </style>
 </head>
 <body>
     <h2><a href="https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php">JavaScript basic - Exercises, Practice, Solution</a></h2>
@@ -45,6 +50,89 @@
             }
         }
     </script>
+
+    <hr>
+
+    <h3>10. Write a JavaScript program to calculate multiplication and division of two numbers (input from user).</h3>
+
+    <form>
+        Number 1: <input type="text" id="number_1"/><br>
+        Number 2: <input type="text" id="number_2"/><br>
+        <input type="button" value="Multiply" onclick="multiply()"/>
+        <input type="button" value="Divide" onclick="divide()"/>
+    </form>
+    Result: <span id="multiplyDivideResult"></span>
+
+    <script>
+        function multiply()
+        {
+            number1 = document.getElementById('number_1').value;
+            number2 = document.getElementById('number_2').value;
+            document.getElementById("multiplyDivideResult").innerHTML = number1 * number2;
+        }
+
+        function divide()
+        {
+            number1 = document.getElementById('number_1').value;
+            number2 = document.getElementById('number_2').value;
+            document.getElementById("multiplyDivideResult").innerHTML = number1 / number2;
+        }
+    </script>
+
+
+    <hr>
+
+    <h3>12. Write a JavaScript program to get the website URL (loading page)</h3>
+    <script>
+        <!-- alert(document.URL); -->
+    </script>
+
+    <hr>
+
+    <h3>13. Write a JavaScript exercise to create a variable using a user-defined name.</h3>
+
+    <form>
+        Plese enter a name for your variable
+        <br>
+        <input type="text" id="varName" />
+        <input type="button" value="Submit" onclick="createVariableWithCustomName()"/>
+    </form>
+    Result: <span id="createVariabaleResult"></span>
+
+    <script>
+        function createVariableWithCustomName()
+        {
+            let varName = document.getElementById('varName').value;
+            let varValue = 'value assigned';
+            this[varName] = varValue;
+            document.getElementById('createVariabaleResult').innerHTML = this[varName];
+        }
+    </script>
+
+
+    <hr>
+
+    <h3>14. Write a JavaScript exercise to get the extension of a filename</h3>
+
+    <form>
+        Please choose a file
+        <br><br>
+        <input type="file" id="fileUploaded" />
+        <input type="button" value="Upload" onclick="getFileExpension()"/>
+    </form>
+    <br>
+    File extension: <span id="fileExtension"></span>
+
+    <script>
+        function getFileExpension()
+        {
+            let filePath = document.getElementById('fileUploaded').value;
+            let fileExtension = filePath.split('.').slice(-1);
+            document.getElementById('fileExtension').innerHTML = `.${fileExtension}`;
+        }
+    </script>
+
 </body>
 </html>
+
 

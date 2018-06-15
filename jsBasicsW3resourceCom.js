@@ -5,9 +5,9 @@
     Sample Output : Today is : Tuesday.
     Current time is : 10 PM : 30 : 38
 */
-function currentTime() {
+function currentTimeFormatted() {
     // https://www.w3schools.com/jsref/jsref_obj_date.asp
-    let today = new Date(2018, 5, 14, 24, 0, 0);
+    let today = new Date();
     let dayOfWeek = today.getDay(); // 0-6
     let hH = today.getHours(); // 0-23
     let mM = today.getMinutes(); // 0-59
@@ -26,16 +26,16 @@ function currentTime() {
 
     let second = twoDigits(sS);
 
-    console.log(`Today is : ${daysOfWeek[dayOfWeek]}`);
+    let output = `Today is : ${daysOfWeek[dayOfWeek]}`;
 
     if (hour === '00 AM' && minute === '00' && second === '00') {
-        console.log('Current time is: Midnigth');
+        output += '\nCurrent time is: Midnight';
     } else if (hour === '00 PM' && minute === '00' && second === '00') {
-        console.log('Current time is: Noon');
+        output += '\nCurrent time is: Noon';
     } else {
-        console.log(`Current time is: ${hour} : ${minute} : ${second}`);
+        output += `\nCurrent time is: ${hour} : ${minute} : ${second}`;
     }
-
+    return output
 }
 
 function twoDigits(timeValue) {
@@ -91,7 +91,7 @@ function currentDate() {
 
     let strMonth = twoDigits(mM); // see above in ex.1
     let strDay = twoDigits(dD);
-    console.log(`${strMonth}-${strDay}-${yYyy}, ${strMonth}/${strDay}/${yYyy} or ${strDay}-${strMonth}-${yYyy}, ${strDay}/${strMonth}/${yYyy}`);
+    return `${strMonth}-${strDay}-${yYyy}, ${strMonth}/${strDay}/${yYyy} or ${strDay}-${strMonth}-${yYyy}, ${strDay}/${strMonth}/${yYyy}`;
 }
 
 
@@ -105,7 +105,7 @@ function triangleArea(a, b, c) {
     let s = (a + b + c) / 2;
     let A = Math.sqrt(s * (s-a) * (s-b) * (s-c));
     // https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-    console.log(`Area of triangle with sides ${a}, ${b} and ${c} is ${Math.round(A*100)/100}`);
+    return `Area of triangle with sides ${a}, ${b} and ${c} is ${Math.round(A*100)/100}`;
 }
 
 
@@ -121,7 +121,7 @@ function rotateString(inputStr) {
     for (let x=inputStr.length-1; x>=0; x--) {
         output += inputStr[x];
     }
-    console.log(output);
+    return output;
 }
 
 
@@ -138,13 +138,13 @@ function ifLeapYear(year) {
     if (year % 4 === 0) {
         if (year % 100) {
             if (year % 400) {
-                console.log(`Year ${year} is leap!`);
+                return `Year ${year} is leap!`;
             } else {
-                console.log(`Year ${year} is not leap`);
+                return `Year ${year} is not leap`;
             }
         }
     } else {
-        console.log(`Year ${year} is not leap`);
+        return `Year ${year} is not leap`;
     }
 }
 
@@ -156,8 +156,7 @@ function the1stNYonSunday(startYear, endYear) {
     for (let y=startYear; y<=endYear; y++) {
         let newYearsStart = new Date(y, 0, 1);
         if (newYearsStart.getDay() === 0) {
-            console.log(`Next time NY will be on Sunday in ${y}`);
-            break;
+            return `Next time NY will be on Sunday in ${y}`;
         }
     }
 }
@@ -195,24 +194,139 @@ function guessNumber() {
     9. Write a JavaScript program to calculate days left until next Christmas (25/12)
 */
 function daysTillXmas() {
+    // My idea:
+    // 1) determine if Xmas will be in this or next year
+    // 2) Get ms for next Xmas
+    // 3) set hh:mm:ss for today to 00:00:00
+    // 4) calculate difference between 2) and 3), divide it by ms * sec * hours and get full days number
     let today = new Date();
+    // 3) set hh:mm:ss for today to 00:00:00
+    today.setHours(0, 0, 0, 0);
     let currMonth = today.getMonth();
     let currDate = today.getDate();
+    let currYear = today.getFullYear();
+    let xMasYear;
+
+    // 1) determine if Xmas will be in this or next year
     if (currMonth<11) { // there wasn't Xmas this year yet
-        console.log('Xmas will be in this year')
+        xMasYear = currYear;
     } else if (currMonth==11) { // it's December
         if (currDate<25) {
-            console.log('Xmas will be in this year')
-        } else if (currDate == 25) {
-            console.log('Xmas is today')
-        } else {
-            console.log('Xmas will be next year')
+            xMasYear = currYear;
+        } else { // including if Xmas is today
+            xMasYear = currYear + 1;
         }
     } else { // this year Xmas has passed already
-        console.log('Xmas will be next year')
+        xMasYear = currYear + 1;
     }
 
-    today.setHours(0, 0, 0);
+    // 2) Get ms for next Xmas
+    let xMasDay = new Date(xMasYear, 11, 25, 0, 0, 0, 0);
+
+    // 4) calculate difference between 2) and 3), divide it by ms * sec * hours and get full days number
+    let msDiff = (xMasDay.getTime() - today.getTime()) / 1000 / 60 / 60 / 24;
+    return `Next Cristmas will be in ${msDiff} days`;
 }
 
-daysTillXmas();
+
+/* #####################################################################################################################
+    10. Write a JavaScript program to calculate multiplication and division of two numbers (input from user).
+*/
+    // See jsBasicsW3ResourceCom.html
+
+
+/* #####################################################################################################################
+    11. Write a JavaScript program to convert temperatures to and from Celsius, Fahrenheit.
+    [ Formula : c/5 = (f-32)/9 [ where c = temperature in Celsius and f = temperature in Fahrenheit ]
+    Expected Output :
+    60°C is 140 °F
+    45°F is 7.222222222222222°C
+*/
+function celcius2Fahrenheit(c) {
+    let f = c / 5 * 9 + 39;
+    return `${c}°C is ${f}°F`;
+}
+
+function fahrenheit2celcius(f) {
+    let c = ((f - 32) / 9) * 5;
+    return `${f}°F is ${c}°C`;
+}
+
+
+/* #####################################################################################################################
+    12. Write a JavaScript program to get the website URL (loading page)
+*/
+    // See jsBasicsW3ResourceCom.html
+    // alert(document.URL);
+
+
+/* #####################################################################################################################
+    13. Write a JavaScript exercise to create a variable using a user-defined name.
+*/
+    // See jsBasicsW3ResourceCom.html
+    // this[varName] = ..
+
+
+/* #####################################################################################################################
+    14. Write a JavaScript exercise to get the extension of a filename
+*/
+    // See jsBasicsW3ResourceCom.html
+    // let filePath = document.getElementById('fileUploaded').value;
+    // let fileExtension = filePath.split('.').slice(-1);
+
+
+/* #####################################################################################################################
+    15. Write a JavaScript program to get the difference between a given number and 13, if the number is greater
+    than 13 return double the absolute difference.
+*/
+function difference15(number) {
+    return number>13 ? (number - 13) * 2 : number - 13;
+}
+
+
+/* #####################################################################################################################
+    16. Write a JavaScript program to compute the sum of the two given integers. If the two values are same,
+    then returns triple their sum.
+*/
+function sum16(number1, number2) {
+    return number1 === number2 ? (number1 + number2) * 3 : number1 + number2;
+}
+
+
+/* #####################################################################################################################
+    17. Write a JavaScript program to compute the absolute difference between a specified number and 19. Returns
+    triple their absolute difference if the specified number is greater than 19.
+*/
+function calculate17(number) {
+    return number<=19 ? Math.abs(number - 19) : Math.abs(number - 19) * 3;
+}
+
+
+/* #####################################################################################################################
+    18. Write a JavaScript program to check two given numbers and return true if one of the number is 50 or
+    if their sum is 50.
+*/
+function calculate18(number1, number2) {
+    return number1 == 50 || number2 == 50 || number1 + number2 == 50;
+}
+
+
+/* #####################################################################################################################
+    19. Write a JavaScript program to check a given integer is within 20 of 100 or 400.
+*/
+function calculate19(number) {
+    return Math.abs(100 - number)<=20 || Math.abs(400 - number)<=20;
+}
+
+
+/* #####################################################################################################################
+    20. Write a JavaScript program to check from two given integers, if one is positive and one is negative.
+*/
+function calculate20(number1, number2) {
+    return number1!=0 && number2!=0 && (number1>0 && number2<0) || (number1<0 && number2>0);
+}
+
+console.log(calculate20(1, -1));
+
+
+21. Write a JavaScript program to create a new string adding "Py" in front of a given string. If the given string begins with "Py" then return the original string.
