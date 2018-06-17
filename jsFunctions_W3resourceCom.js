@@ -225,11 +225,6 @@ function ifPerfect(n){
 /* #####################################################################################################################
     13. Write a JavaScript function to compute the factors of a positive integer.
 */
-function getFactors(n) {
-    
-}
-
-console.log(ifPerfect(496));
 
 
 
