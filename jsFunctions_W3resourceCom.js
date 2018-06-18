@@ -225,7 +225,86 @@ function ifPerfect(n){
 /* #####################################################################################################################
     13. Write a JavaScript function to compute the factors of a positive integer.
 */
+function getFactors(n) {
+    let factors = [];
+    for (let i=1; i <= n; i++) {
+        if (n % i == 0) {
+            factors.push(i);
+        }
+    }
+    return factors;
+}
 
 
+/* #####################################################################################################################
+    14. Write a JavaScript function to convert an amount to coins.
+    Sample function : amountTocoins(46, [25, 10, 5, 2, 1])
+    Here 46 is the amount. and 25, 10, 5, 2, 1 are coins.
+    Output : 25, 10, 10, 1
+*/
+function toCoins(amount, coins) {
+    if (amount == 0) {
+        return []
+    } else {
+        let reminder = amount;
+        let output = [];
+        for (let x=0; x < coins.length; x++) {
+            if (reminder / coins[x] >= 1) {
+                let howManyCoins = Math.floor(reminder / coins[x]);
+                reminder = reminder % coins[x];
+                for (let i=1; i <= howManyCoins; i++) {
+                    output.push(coins[x]);
+                }
+            }
+        }
+        return output;
+    }
+}
+
+
+/* #####################################################################################################################
+    15. Write a JavaScript function to compute the value of b^n where n is the exponent and b is the bases.
+    Accept b and n from the user and display the result.
+*/
+function nExpB(b, n) {
+    let result = b;
+    for (let i=1; i<n; i++) {
+        result *= b;
+    }
+    return result;
+}
+
+
+/* #####################################################################################################################
+    16. Write a JavaScript function to extract unique characters from a string.
+    Example string : "thequickbrownfoxjumpsoverthelazydog"
+    Expected Output : "thequickbrownfxjmpsvlazydg"
+*/
+function uniqueChars(s) {
+    let unique = '';
+    for (let i=0; i<s.length; i++) {
+        if (!unique.includes(s[i])) {
+            unique += s[i];
+        }
+    }
+    return unique;
+}
+
+/* #####################################################################################################################
+    17. Write a JavaScript function to  get the number of occurrences of each letter in specified string
+*/
+function countOccurences(s) {
+    let chDict = {};
+    for (let i=0; i<s.length; i++) {
+        if (s[i] in chDict) {
+            chDict[s[i]] += 1;
+        } else {
+            chDict[s[i]] = 1;
+        }
+    }
+    return chDict;
+}
+
+console.log(countOccurences('thequickbrownfoxjumpsoverthelazydog'));
 
 
