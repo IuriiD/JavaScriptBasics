@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsCondStatementsLoops_W3resourceCom</title>
+</head>
+<body>
+    <h2><a href="https://www.w3resource.com/javascript-exercises/javascript-conditional-statements-and-loops-exercises.php">JavaScript conditional statements and loops</a></h2>
+
+    <h3>2. Write a JavaScript conditional statement to find the sign of product of three numbers. Display an alert box with the specified sign.</h3>
+
+    <script>
+        let a, b, c;
+        a = window.prompt("Input the 1st integer", "0");
+        b = window.prompt("Input the 2nd integer", "0");
+        c = window.prompt("Input the 3rd integer", "0");
+
+        (parseInt(a, 10) * parseInt(b, 10) * parseInt(c, 10) >= 0) ? window.alert("+") : window.alert("-")
+    </script>
+</body>
+</html>
