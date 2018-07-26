@@ -158,4 +158,143 @@ function fizzBuzz() {
     }
 }
 
-fizzBuzz();
+/*
+    8. According to Wikipedia a happy number is defined by the following process :
+    "Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat
+    the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not
+    include 1. Those numbers for which this process ends in 1 are happy numbers, while those that do not end in 1
+    are unhappy numbers (or sad numbers)".
+    Write a JavaScript program to find and print the first 5 happy numbers.
+*/
+function happyNumbers(n) {
+    let nToStr = String(n);
+    let charSqueresSum = 0;
+    let cycleCount = 0;
+    while (charSqueresSum !== 1 && cycleCount <= 100) {
+        charSqueresSum = 0;
+        for (let myChar of String(nToStr)) {
+            charSqueresSum += Math.pow(parseInt(myChar), 2);
+        }
+
+        if (charSqueresSum !== 1) {
+            nToStr = charSqueresSum;
+        } else {
+            return true;
+        }
+
+
+        if (cycleCount === 100) {
+            return false;
+        }
+
+        cycleCount++;
+    }
+}
+
+function getFirst5HappyNumbers(howMany) {
+    let result = [];
+    let i = 0;
+    while (result.length < howMany) {
+        let ifHappy = happyNumbers(i);
+        if (ifHappy) {
+            result.push(i);
+        }
+        i++;
+    }
+    return result;
+}
+
+
+/*
+    9. Write a JavaScript program to find the armstrong numbers of 3 digits.
+    Note : An Armstrong number of three digits is an integer such that the sum of the cubes of its digits is equal
+    to the number itself. For example, 371 is an Armstrong number since 3**3 + 7**3 + 1**3 = 371.
+*/
+function getArmstrongNumber(n) {
+    let sumOfCubesOfDigits = 0;
+    let strN = String(n);
+
+    for (let myChar of strN) {
+        sumOfCubesOfDigits += Math.pow(parseInt(myChar), 3);
+    }
+
+    if (sumOfCubesOfDigits === n) {
+        return `${n} is an Armstrong number`;
+    } else {
+        return `${n} is NOT an Armstrong number`;
+    }
+}
+
+
+/*
+    10. Write a JavaScript program to construct the following pattern, using a nested for loop.
+    *
+    * *
+    * * *
+    * * * *
+    * * * * *
+*/
+function drawStarsTree(n){
+    let result = "";
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= i; j++) {
+            j === 1 ? result += "*" : result += " *";
+        }
+        if (i < n) {
+            result += "\n";
+        }
+    }
+    return result;
+}
+
+function drawStarsTreeV2(n) {
+    let result = "";
+    for (let i = 1; i <= n; i++) {
+        result += `\n ${"* ".repeat(i)}`;
+    }
+    return result;
+}
+
+
+/*
+    11. Write a JavaScript program to compute the greatest common divisor (GCD) of two positive integers.
+*/
+function biggestCommonDivisor(a, b) {
+    // Find smaller number of 2
+    // Search divisors of a smaller number starting from this number itself and in direction to 1
+    // Check if every divisor of the smaller number is also a divisor of another number
+    let smallerN = 0;
+    let biggerN = 0;
+    if (a === b) {
+        return a;
+    } else {
+        if (a > b) {
+            smallerN = b;
+            biggerN = a;
+        } else {
+            smallerN = a;
+            biggerN = b;
+        }
+
+        for (let i = smallerN; i > 0; i--) {
+            if (smallerN % i == 0) { // got a divisor
+                if (biggerN % i == 0) {
+                return i} // it will be at least 1
+            }
+        }
+    }
+}
+
+
+/*
+    12. Write a JavaScript program to sum the multiples of 3 and 5 under 1000.
+*/
+function sumMultiplesOf3And5(limit) {
+    let result = 0;
+    for (let i=0; i<1000; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+            result += i;
+        }
+    }
+    return result;
+}
