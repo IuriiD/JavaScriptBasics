@@ -78,4 +78,17 @@ function first(inputArr, n=1) {
     -2
     [9, 0, -2]
     [7, 9, 0, -2]
-*/;
+*/
+function last(inputArr, n) {
+    if (inputArr == null) {
+        return [];
+    } else {
+        if (n == null || n < 0) {
+            return String(inputArr.slice(-1));
+        } else if (n > inputArr.length) {
+            return inputArr;
+        } else {
+            return inputArr.slice(n*-1)
+        }
+    }
+}
