@@ -92,3 +92,37 @@ function last(inputArr, n) {
         }
     }
 }
+
+
+/*
+    5. Write a simple JavaScript program to join all elements of the following array into a string.
+    Sample array : myColor = ["Red", "Green", "White", "Black"];
+    Expected Output :
+    "Red,Green,White,Black"
+    "Red,Green,White,Black"
+    "Red+Green+White+Black"
+*/
+function joinArrIntoStr(arr) {
+    return arr.toString();
+    // return arr.join(',');
+    // return arr.join('+');
+}
+
+
+/*
+    6. Write a JavaScript program which accept a number as input and insert dashes (-)
+    between each two even numbers. For example if you accept 025468 the output should be 0-254-6-8.
+*/
+function dashesBetweenEvens(someNumberStr) {
+    let result = someNumberStr[0];
+    for (let i=1; i<someNumberStr.length; i++) {
+        if (parseInt(someNumberStr[i]) % 2 == 0 && parseInt(someNumberStr[i-1]) % 2 == 0) {
+            result += '-' + someNumberStr[i];
+        } else {
+            result += someNumberStr[i];
+        }
+    }
+    return result;
+}
+
+console.log(dashesBetweenEvens('025468'));
