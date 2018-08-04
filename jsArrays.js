@@ -125,4 +125,72 @@ function dashesBetweenEvens(someNumberStr) {
     return result;
 }
 
-console.log(dashesBetweenEvens('025468'));
+/*
+    7. Write a JavaScript program to sort the items of an array.
+    Sample array : var arr1 = [ 3, 8, 7, 6, 5, -4, 3, 2, 1 ];
+    Sample Output : -4,-3,1,2,3,5,6,7,8
+*/
+function getMin(someArr) {
+    let minEl = someArr[0];
+
+    for (let elem of someArr) {
+        if (elem < minEl) minEl = elem;
+    }
+
+    return minEl;
+}
+
+function sortIt(inputArr) {
+    let workingArr = inputArr;
+    let sortedArr = [];
+    let minElement;
+
+    while (workingArr.length>0) {
+        minElement = getMin(workingArr);
+        sortedArr.push(minElement);
+        workingArr.splice(workingArr.indexOf(minElement), 1);
+    }
+
+    return sortedArr;
+}
+
+
+/*
+    8. Write a JavaScript program to find the most frequent item of an array.
+    Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+    Sample Output : a ( 5 times )
+*/
+function mostFrequentElement(arr) {
+    let maxFrequencyValue = 0;
+    let maxFrequencyKey;
+
+    for (let element of arr) {
+        if (element !== maxFrequencyKey) {
+            let counter = arr.filter(e => e === element).length;
+            if (counter>maxFrequencyValue) {
+                maxFrequencyValue = counter;
+                maxFrequencyKey = element;
+            }
+        }
+    }
+
+    return maxFrequencyKey;
+}
+
+
+/*
+    9. Write a JavaScript program which accept a string as input and swap the case of each character.
+    For example if you input 'The Quick Brown Fox' the output should be 'tHE qUICK bROWN fOX'.
+*/
+function swapCase(inputStr) {
+    let result = '';
+    for (ch of inputStr) {
+        if (ch === ch.toUpperCase()) {
+            result += ch.toLowerCase();
+        } else {
+            result += ch.toUpperCase();
+        }
+    }
+    return result;
+}
+console.log(swapCase('The Quick Brown Fox'));
