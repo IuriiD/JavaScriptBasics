@@ -1,4 +1,5 @@
 // JavaScript array
+// https://www.w3resource.com/javascript-exercises/javascript-array-exercises.php
 
 /*
     1. Write a JavaScript function to check whether an `input` is an array or not.
@@ -193,4 +194,74 @@ function swapCase(inputStr) {
     }
     return result;
 }
-console.log(swapCase('The Quick Brown Fox'));
+
+
+/*
+    10. Write a JavaScript program which prints the elements of the following array.
+    Note : Use nested for loops.
+    Sample array : var a = [[1, 2, 1, 24], [8, 11, 9, 4], [7, 0, 7, 27], [7, 4, 28, 14], [3, 10, 26, 7]];
+    Sample Output :
+    "row 0"
+    " 1"
+    " 2"
+    " 1"
+    " 24"
+    "row 1"
+    ------
+    ------
+*/
+function printElements(arr) {
+    let result = '';
+    for (let i=0; i<arr.length; i++) {
+        result += `row ${i}\n`;
+        for (let element of arr[i]) {
+            result += ` ${element}\n`;1
+        }
+    }
+    return result;
+}
+
+
+/*
+    11. Write a JavaScript program to find the sum of squares of a numeric vector.
+*/
+function sumOfSquares(numVector) {
+    let result = 0;
+    for (let element of numVector) {
+        result += element * element;
+    }
+    return result;
+}
+
+
+/*
+    12. Write a JavaScript program to compute the sum and product of an array of integers
+*/
+function getSumAndProduct(arr) {
+    let sum = 0;
+    let product = 1;
+    for (let element of arr) {
+        sum += element;
+        product *= element;
+    }
+    return {'sum': sum, 'product': product};
+}
+
+
+/*
+    14. Write a JavaScript program to remove duplicate items from an array (ignore case sensitivity).
+*/
+function removeDuplicates(arr) {
+    let result = [];
+    for (let element of arr) {
+        console.log(String(element).toLowerCase());
+        if (!result.includes(String(element).toLowerCase())) {
+            result.push(String(element));
+        }
+    }
+    return result;
+}
+
+const arr1 = ['a', 'b', 'c', 'a', 'd', 'c'];
+const arr2 = [1, 2, 2, 3, 4, 6];
+console.log(removeDuplicates(arr2));
