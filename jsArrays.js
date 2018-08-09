@@ -262,6 +262,48 @@ function removeDuplicates(arr) {
     return result;
 }
 
-const arr1 = ['a', 'b', 'c', 'a', 'd', 'c'];
-const arr2 = [1, 2, 2, 3, 4, 6];
-console.log(removeDuplicates(arr2));
+
+/*
+    15. We have the following arrays :
+    color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+    o = ["th","st","nd","rd"]
+    Write a JavaScript program to display the colors in the following way :
+    "1st choice is Blue ."
+    "2nd choice is Green."
+    "3rd choice is Red."
+    - - - - - - - - - - - - -
+    Note : Use ordinal numbers to tell their position.
+*/
+function displayColors(colorsArr, endingsArr) {
+    let result = '';
+    for (let i=0; i<colorsArr.length; i++) {
+        if (i<3) {
+            if (i>=1) result += '\n';
+            result += `${i+1}${endingsArr[i+1]} choice is ${colorsArr[i]}`
+        } else {
+            result += `\n${i+1}${endingsArr[0]} choice is ${colorsArr[i]}`
+        }
+    }
+    return result;
+}
+
+
+/*
+    16. Find the leap years in a given range of years.
+    "... every year divisible by four except for years which are both divisible by 100 and not divisible by 400."
+    http://scienceworld.wolfram.com/astronomy/LeapYear.html
+*/
+function ifLeapYear(rangeStart, rangeEnd) {
+    let result = [];
+    for (i=rangeStart; i<rangeEnd+1; i++) {
+        if (i % 4 === 0 && !(i % 100 == 0 && !(i % 400 == 0))) {
+            result.push(i);
+        }
+    }
+    return result;
+}
+
+
+/*
+    17. Write a JavaScript program to shuffle an array.
+*/
