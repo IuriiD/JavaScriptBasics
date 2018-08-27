@@ -307,3 +307,32 @@ function ifLeapYear(rangeStart, rangeEnd) {
 /*
     17. Write a JavaScript program to shuffle an array.
 */
+function shuffle(arr) {
+    /*
+        Let's create a new array and move random elements from one array to another
+    */
+    let result = [];
+    let source = arr;
+
+    for (let i=1; i<=arr.length; i++) {
+        let randIndex = Math.floor(Math.random() * source.length);
+        console.log(`index: ${randIndex}`);
+        result.push(source[randIndex]);
+        source.splice(randIndex, 1);
+    }
+    // the last element
+    result.push(source[0]);
+    return result;
+}
+
+
+/*
+    18. Write a JavaScript program to perform a binary search.
+    Note : A binary search or half-interval search algorithm finds the position of a specified input
+    value within an array sorted by key value.
+    Sample array :
+    var items = [1, 2, 3, 4, 5, 7, 8, 9];
+    Expected Output :
+    console.log(binary_Search(items, 1)); //0
+    console.log(binary_Search(items, 5)); //4
+*/
