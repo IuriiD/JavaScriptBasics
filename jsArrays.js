@@ -335,4 +335,68 @@ function shuffle(arr) {
     Expected Output :
     console.log(binary_Search(items, 1)); //0
     console.log(binary_Search(items, 5)); //4
+
+    https://en.wikipedia.org/wiki/Binary_search_algorithm
 */
+function binary(arr, item) {
+    let l = 0;
+    let r = arr.length - 1;
+    while (l <= r) {
+        let middle = Math.floor((l + r) / 2);
+        if (arr[middle] < item) {
+            l = middle + 1;
+        } else if (arr[middle] > item) {
+            r = middle - 1;
+        } else {
+            return middle;
+        }
+    }
+    return false;
+}
+
+
+
+/*
+    19. There are two arrays with individual values, write a JavaScript program to compute the sum of
+    each individual index value from the given arrays.
+    Sample array :
+    array1 = [1,0,2,3,4];
+    array2 = [3,5,6,7,8,13];
+    Expected Output :
+    [4, 5, 8, 10, 12, 13]
+*/
+function sumPerIndex(arr1, arr2) {
+    let longest = 0;
+    arr1.length > arr2.length ? longest = arr1.length : longest = arr2.length;
+    let sumsArr = [];
+    for (let i=0; i<longest; i++) {
+        let sumAtIndex = 0;
+        if (arr1[i]) sumAtIndex += arr1[i];
+        if (arr2[i]) sumAtIndex += arr2[i];
+        sumsArr.push(sumAtIndex);
+    }
+    return sumsArr;
+}
+
+
+/*
+    20. Write a JavaScript program to find duplicate values in a JavaScript array.
+*/
+function getDuplicates(arr) {
+    let duplicates = [];
+    for (let item of arr) {
+        let counter = 0;
+        for (let i=0; i<arr.length; i++) {
+            if (item === arr[i]) {
+                counter ++;
+            }
+        }
+        if (counter > 1 && !duplicates.includes(item)) {
+            duplicates.push(item);
+        }
+    }
+    return duplicates;
+}
+
+const testArr = [1, 3, 3, 4, 5, 6, 6, 6];
+console.log(getDuplicates(testArr));
